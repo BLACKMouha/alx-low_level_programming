@@ -3,7 +3,7 @@
  * main-Entry point
  * Return:Always 0 (success)
  */
-int maint(void)
+int main(void)
 {
 	char c;
 	int i;
