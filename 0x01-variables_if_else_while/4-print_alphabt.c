@@ -4,7 +4,7 @@
  * main - Ehtry point
  * Return: Always 0 (success)
 */
- 
+
 int main()
 {
 	int i;
