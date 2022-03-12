@@ -15,7 +15,7 @@ int main(void)
 		putchar(i);
 	}
 
-	for (c = 'a'; c <= 'a'+ 5; c++)
+	for (c = 'a'; c <= 'a' + 5; c++)
 	{
 		putchar(c);
 	}
