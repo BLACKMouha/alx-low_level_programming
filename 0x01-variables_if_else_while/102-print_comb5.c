@@ -30,14 +30,10 @@ int main(void)
 						putchar(l);
 
 						if (i + j + k + l == 227 && i == 57)
-						{
 							break;
-						}
 						else
-						{
 							putchar(44);
 							putchar(32);
-						}
 					}
 				}
 			}
