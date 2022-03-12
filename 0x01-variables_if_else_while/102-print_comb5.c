@@ -29,10 +29,7 @@ int main(void)
 						putchar(k);
 						putchar(l);
 
-						if (
-						    ((i + j + k + l) ==
-						     (57 + 56 + 57 + 57)) &&
-						    i == 57)
+						if (((i + j + k + l) == 227) && i == 57)
 						{
 							break;
 						}
