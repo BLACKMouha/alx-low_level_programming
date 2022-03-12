@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+/**
+ * main -Entry point
+ * Return: Always 0 (success)
+*/
+
 int main(void)
 {
 	int i;
@@ -16,5 +21,5 @@ int main(void)
 
 	putchar(10);
 
-	return 0;
+	return (0);
 }
