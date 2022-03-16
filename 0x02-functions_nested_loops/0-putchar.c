@@ -4,7 +4,7 @@ int _putchar (char c);
 #endif
 
 /**
- * main - check the code
+ * main - Entry
  * Return : Always 0
 */
 
