@@ -15,11 +15,11 @@ void print_alphabet (void);
 
 void alphabet_print(void)
 {
-	char c;
+	char character;
 
-	for (c = 'a'; a <= 'z'; c++)
+	for (character = 'a'; character <= 'z'; character++)
 	{
-		_putchar(c);
+		_putchar(character);
 	}
 
 	_putchar('\n');
