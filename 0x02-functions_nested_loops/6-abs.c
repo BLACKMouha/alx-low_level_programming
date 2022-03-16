@@ -11,4 +11,6 @@
 int _abs(int x)
 {
 	x = ( x >= 0) ? x : -x;
+	
+	return (x);
 }
