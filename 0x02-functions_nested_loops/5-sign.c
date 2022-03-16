@@ -2,7 +2,7 @@
 
 /**
  * print_sign - Checks sign
- * 
+ *
  * @n: The signs
  *
  * Return: returns different outputs
