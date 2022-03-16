@@ -2,9 +2,9 @@
 
 /**
  * _islower - This functions checks if a character is lowercase or not
- * 
+ *
  * @c: refers to a character in ASCII
- * 
+ *
  * Return: 1 if success otherwhise 0
 */
 
