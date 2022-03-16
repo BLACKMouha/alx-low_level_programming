@@ -11,7 +11,7 @@
 int print_last_digit(int i)
 {
 	int m; 
-	
+
 	m= i % 10;
 	if (m < 0)
 	{
@@ -21,7 +21,6 @@ int print_last_digit(int i)
 	else
 	{
 		_putchar(m + 48);
-		
 		return (m);
 	}
 }
