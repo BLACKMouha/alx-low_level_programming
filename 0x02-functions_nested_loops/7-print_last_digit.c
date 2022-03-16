@@ -5,7 +5,7 @@
  *
  * @i: is an integer
  *
- * Return : Return an integer representing the last digit of a number
+ * Return: Return an integer representing the last digit of a number
 */
 
 int print_last_digit(int i)
