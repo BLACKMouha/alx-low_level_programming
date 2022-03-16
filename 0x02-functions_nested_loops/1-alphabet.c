@@ -1,8 +1,9 @@
 #ifndef MAIN_H
 #define MAIN_H
 int _putchar (char c);
-void print_alphabet (void);
 #endif
+
+void print_alphabet (int i);
 
 /**
  * main - Entry point
@@ -12,12 +13,18 @@ void print_alphabet (void);
 
 int main (void)
 {
-	int i;
+	print_alphabet ();
+	
+	return (0);
+}
 
+
+void print_alphabet (int i)
+{
 	for (i = 97; i <= 122; i++)
 	{
-		print_alphabet (i);
+		_putchar (i);
 	}
 
-	return (0);
+	return;
 }
