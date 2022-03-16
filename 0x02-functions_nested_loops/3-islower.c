@@ -1,8 +1,10 @@
 #include "main.h"
 
 /**
- * is_lower - Check if a character is i lowercase of not
- *
+ * _islower - Check if a character is i lowercase of not
+ * 
+ * @c refers to a character in ASCII
+ * 
  * Return 1 if success otherwhise 0
 */
 
