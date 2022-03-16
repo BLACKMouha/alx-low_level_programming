@@ -16,3 +16,15 @@ int main (void)
 
 	return (0);
 }
+
+void print_alphabt (void)
+{
+	char ch;
+
+	for (ch = 'a'; ch <= 'z'; ch++)
+	{
+		_putchar(ch);
+	}
+
+	return;
+}

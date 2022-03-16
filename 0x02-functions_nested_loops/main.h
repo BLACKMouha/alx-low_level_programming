@@ -12,19 +12,6 @@
  * Return : Always 0
  */
 
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
+int _putchar(char c);
 
-void print_alphabet(void)
-{
-	char character;
-
-	for (character = 'a'; character <= 'z'; character++)
-	{
-		_putchar(character);
-	}
-	
-	return;
-}
+void print_alphabet(void);
