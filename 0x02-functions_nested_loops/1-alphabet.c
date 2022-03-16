@@ -1,8 +1,6 @@
-#ifndef MAIN_H
-#define MAIN_H
-int _putchar (char c);
-#endif
+#include "main.h"
 
+int _puchart (char c);
 void print_alphabet (void);
 
 /**
