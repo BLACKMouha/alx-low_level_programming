@@ -11,7 +11,7 @@
  * main - Entry point
  * Return : Always 0
  */
-int _putchat(char c);
+int _putchar(char c);
 void print_alphabet(void);
 
 int _putchar(char c)

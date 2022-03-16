@@ -1,6 +1,6 @@
 #include "main.h"
 
-int _puchart (char c);
+int _putchar(char c);
 void print_alphabet (void);
 
 /**
@@ -11,7 +11,7 @@ void print_alphabet (void);
 
 int main (void)
 {
-	print_alphabet ();
+	print_alphabet();
 
 	return (0);
 }
