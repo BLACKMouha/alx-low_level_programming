@@ -5,7 +5,8 @@ int _putchar (char c);
 
 /**
  * main - Entry
- * Return 0
+ *
+ * Return: Always 0
 */
 
 int main(void)
