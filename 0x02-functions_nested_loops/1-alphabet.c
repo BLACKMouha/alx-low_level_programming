@@ -3,7 +3,7 @@
 int _putchar (char c);
 #endif
 
-void print_alphabet (int i);
+void print_alphabet (void);
 
 /**
  * main - Entry point
@@ -19,8 +19,10 @@ int main (void)
 }
 
 
-void print_alphabet (int i)
+void print_alphabet (void)
 {
+	int i;
+
 	for (i = 97; i <= 122; i++)
 	{
 		_putchar (i);
