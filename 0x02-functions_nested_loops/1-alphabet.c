@@ -7,11 +7,22 @@ void print_alphabet (void);
  * main - Entry point
  *
  * Return: Always 0
+ *
+ * print_alphabet - Prints alphabet in lowercase
+ * Return: void
 */
 
-int main (void)
-{
-	print_alphabet();
 
-	return (0);
+void alphabet_print(void)
+{
+	char c;
+
+	for (c = 'a'; a <= 'z'; c++)
+	{
+		_putchar(c);
+	}
+
+	_putchar('\n');
+
+	return;
 }
