@@ -11,12 +11,12 @@
  * main - Entry point
  * Return : Always 0
  */
-int _putchat(cha c);
+int _putchat(char c);
 void print_alphabet(void);
 
 int _putchar(char c)
 {
-	return (write(1, &c, 1);
+	return (write(1, &c, 1));
 }
 
 void print_alphabet(void)
