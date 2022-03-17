@@ -2,7 +2,7 @@
 
 /**
  * _isdigit - Checks for a digit (0 through 9)
- * @c: The int value of character to evaluate
+ * @c: a number representing an ASCII character
  *
  * Return: 1 if digit, other case 0.
  */
