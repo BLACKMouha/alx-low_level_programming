@@ -1,17 +1,24 @@
 #include "main.h"
 
 /**
- *_isalpha - This function checks if a given character is in letter or not
- *@c: have to be an ASCII character
- *
- * Return: 1 if Success otherwhise 0
-*/
-
+ * _isalpha - Check Holberton
+ * @c: An input character
+ * Description: function returns 1 if the character is a
+ * letter, lowercase or uppercase.
+ * Return: 1 or 0 in otherwise.
+ */
 int _isalpha(int c)
 {
-	int i;
+	char lower, upper;
+	int isletter = 0;
 
-	i = (((c >= 65) && (c <= 90)) || ((c >= 97) && (c <= 122))) ? 1 : 0;
-
-	return (i);
+	for (lower = 'a'; lower <= 'z'; lower++)
+	{
+		for (upper = 'A'; upper <= 'Z'; upper++)
+		{
+			if (c == lower || c == upper)
+				isletter = 1;
+		}
+	}
+	return (isletter);
 }
