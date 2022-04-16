@@ -4,7 +4,7 @@
  * @f: f is a function pointer that points to the function printer
  * Return: void
  */
- 
+
 void print_name(char *name, void (*f)(char *))
 {
 	if (!name !, void (f*)(char *))
