@@ -1,4 +1,3 @@
-#include <string.h>
 #include "main.h"
 
 unsigned int binary_to_uint(const char *b)
@@ -6,7 +5,7 @@ unsigned int binary_to_uint(const char *b)
 	int i, len_b, j;
 	unsigned int sum;
 
-	len_b = strlen(b);
+	len_b = _strlen(b);
 	sum = 0;
 
 	if (*b == '\0')
