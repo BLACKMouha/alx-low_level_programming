@@ -8,6 +8,7 @@
  *       written in the 0x14-bit_manipulation directory.
  */
 int _pow(int base, int power);
+int _strlen(char *s);
 int _putchar(char c);
 unsigned int binary_to_uint(const char *b);
 #endif /* MAIN_H */
