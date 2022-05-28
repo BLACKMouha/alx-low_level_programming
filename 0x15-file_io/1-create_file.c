@@ -8,7 +8,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-/** 
+/**
  * create_file - a function that creates a file.
  * Prototype: int create_file(const char *filename, char *text_content);
  * @filename: the name of the file to create.
@@ -25,12 +25,12 @@ int create_file(const char *filename, char *text_content)
 
 	fd_open = open(filename, O_RDWR | O_CREAT | O_TRUNC, 0600);
 	length_of_text_content = strlen(text_content);
-	
+
 	if (fd_open < 0)
 		return (-1);
 
 	fd_write = write(fd_open, text_content, length_of_text_content);
-	
+
 	close(fd_open);
 
 	if (fd_write < 0)
