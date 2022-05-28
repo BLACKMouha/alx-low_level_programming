@@ -1,75 +1,33 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-#include <string.h>
-
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/uio.h>
+#include <unistd.h>
 #include <fcntl.h>
 
 /**
- * create_file - a function that creates a file.
- * Prototype: int create_file(const char *filename, char *text_content);
- * @filename: the name of the file to create.
- * @text_content: a NULL terminated string to write to @filename
- * Return: 1 on success, -1 on failure
+ * create_file - A function that creates a file
+ * @filename: The filename to create
+ * @text_content: A NULL terminated string to write to the file
+ * Return: 1 on success, -1 if file can not be created, nor written,
+ * nor write fails.
  */
-
 int create_file(const char *filename, char *text_content)
 {
-	int fd_open, fd_write, length;
+	int fdo, fdw, len = 0;
 
 	if (filename == NULL)
 		return (-1);
 
-	fd_open = open(filename, O_RDWR | O_CREAT | O_TRUNC, 0600);
-	length = strlen(text_content);
-
-	if (fd_open < 0)
+	fdo = open(filename, O_RDWR | O_CREAT | O_TRUNC, 0600);
+	if (fdo < 0)
 		return (-1);
 
-	fd_write = write(fd_open, text_content, length);
+	while (text_content && *(text_content + len))
+		len++;
 
-	close(fd_open);
-
-	if (fd_write < 0)
+	fdw = write(fdo, text_content, len);
+	close(fdo);
+	if (fdw < 0)
 		return (-1);
-
 	return (1);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
