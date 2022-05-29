@@ -1,212 +1,89 @@
-/** ===== Header Files ===== **/
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/uio.h>
+#include <unistd.h>
 #include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-
-/** ===== Prototype ===== **/
-int safe_close(int fd);
-
-
+int safe_close(int);
 /**
- * main - copies the content of a file to another one.
- * Usage on a terminal / shell: ./cp file_from file_to
- *
- * If @file_to already exists, truncate it.
- *
- * If the number of argument is not the correct one, exit with code 97 and print
- * "Usage: cp file_from file_to", followed by a new line, on the POSIX standard
- * error STDERR_FILENO.
- *
- * If @file_from does not exist, or if you can not read it, exit with code 98 and
- * print "Error: Can't read from file NAME_OF_THE_FILE", followed by a new line, on
- * the POSIX standard error STDERR_FILENO,
- * where NAME_OF_FILE is the first argument passed to your program.
- *
- * If you can not create por if write() to @file_to fails, exit with code 99 and
- * print "Error: Can't write to NAME_OF_THE_FILE", followed by a new line, on the 
- * POSIX standard  error, STDERR_FILENO
- * where NAME_OF_THE_FILE is the second argument passed to your program.
- *
- * If you can not close a file descriptor, exit with code 100 and print
- * "Error:Can't close fd FD_VALUE", followed by a new line, on the POSIX
- * standard error, STDERR_FILENO,
- * where FD_VALUE is the value of the file descriptor
- *
- *
+ * main - Main function to copy files
+ * @argc: The number of passed arguments
+ * @argv: The pointers to array arguments
+ * Return: 1 on success, exits on failure
  */
-
-int main (int argc, char **argv)
+int main(int argc, char *argv[])
 {
-	int fd_of_file_from, fd_of_file_to, bufsize = 1024, bytes_read, bytes_written, is_closed;
-	int i, len_arg_1, len_arg_2;
 	char buffer[1024];
-	char file_from[1024];
-	char file_to[1024];
+	int bytes_read = 0, _EOF = 1, from_fd = -1, to_fd = -1, error = 0;
 
-	if (argc < 3)
+	if (argc != 3)
 	{
-		dprintf(STDERR_FILENO, "Usage: cp file_from, file_to\n");
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
 
-	/** The first argument passed to the function is file_from */
-	len_arg_1 = strlen(argv[1]);
-
-	for (i = 0; i < len_arg_1; i++)
-		file_from[i] = *(argv[1] + i);
-
-	file_from[i] = '\0';
-
-	/** The second argument passed to the function is file_to */
-	len_arg_2 = strlen(argv[2]);
-
-	for (i = 0; i < len_arg_2; i++)
-		file_to[i] = *(argv[2] + i);
-
-	file_to[i] ='\0';
-	
-	/** Trying to open file_from & file_to **/
-	/** file_from is read **/
-	fd_of_file_from = open(file_from, O_RDONLY);
-
-	if (fd_of_file_from < 0)
+	from_fd = open(argv[1], O_RDONLY);
+	if (from_fd < 0)
 	{
-		dprintf(STDERR_FILENO,"Error: Can't read from file %s\n", file_from);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
 
-	/** While file_to is written **/
-	fd_of_file_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
- 
-	if (fd_of_file_to < 0)
+	to_fd = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0664);
+	if (to_fd < 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
-		safe_close(fd_of_file_to);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+		safe_close(from_fd);
 		exit(99);
 	}
 
-	/** Now, file_from & file_to are opened successfullty **/
-	bytes_read = read(fd_of_file_from, buffer, bufsize);
-
-	if (bytes_read < 0)
+	while (_EOF)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from %s\n", file_from);
-		safe_close(fd_of_file_from);
-		safe_close(fd_of_file_to);
-		exit(98);
+		_EOF = read(from_fd, buffer, 1024);
+		if (_EOF < 0)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+			safe_close(from_fd);
+			safe_close(to_fd);
+			exit(98);
+		}
+		else if (_EOF == 0)
+			break;
+		bytes_read += _EOF;
+		error = write(to_fd, buffer, _EOF);
+		if (error < 0)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+			safe_close(from_fd);
+			safe_close(to_fd);
+			exit(99);
+		}
 	}
-
-	bytes_written = write(fd_of_file_to, buffer, bytes_read);
-
-	if (bytes_written < 0)
+	error = safe_close(to_fd);
+	if (error < 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
-		safe_close(fd_of_file_from);
-		safe_close(fd_of_file_to);
-		exit(98);
+		safe_close(from_fd);
+		exit(100);
 	}
-
-	is_closed = safe_close(fd_of_file_from);
-
-	if(is_closed < 0)
+	error = safe_close(from_fd);
+	if (error < 0)
 		exit(100);
-
-	is_closed = safe_close(fd_of_file_to);
-		exit(100);
-
 	return (0);
 }
 
-
 /**
- * safe_close - close a file descriptor safely.
- * Return: 0 on success, -1 on failure and print an message to the POSIX standard error.
+ * safe_close - A function that closes a file and prints error when closed file
+ * @description: Description error for closed file
+ * Return: 1 on success, -1 on failure
  */
-
-int safe_close(int fd)
+int safe_close(int description)
 {
-	int close_integer;
+	int error;
 
-	close_integer = close(fd);
-
-	if (close_integer < 0)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
-	}
-
-	return (close_integer);
+	error = close(description);
+	if (error < 0)
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", description);
+	return (error);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
