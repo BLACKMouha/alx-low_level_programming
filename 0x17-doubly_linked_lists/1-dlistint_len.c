@@ -1,5 +1,4 @@
 #include "lists.h"
-#include <stdio.h>
 
 /**
  * dlistint_len - function that returns the number of nodes of a dlistint_t list
@@ -10,14 +9,11 @@
 
 size_t dlistint_len(const dlistint_t *h)
 {
-  unsigned int number_of_nodes = 0;
-  const dlistint_t *current_node = h;
+	const dlistint_t *current_node; /* list runner */
+	int number_of_nodes = 0; /* lenght counter */
 
-  while(current_node)
-  {
-    current_node = current_node->next;
-    number_of_nodes++;
-  }
+	for (current_node = h; current_node; current_node = current_node->next)
+		number_of_nodes++;
 
-  return (number_of_nodes);
+	return (number_of_nodes);
 }
