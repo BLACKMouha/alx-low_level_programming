@@ -11,7 +11,7 @@
 size_t print_dlistint(const dlistint_t *h)
 {
   unsigned int number_of_nodes = 0; /* The returned number of nodes*/
-  dlistint_t *current_node; /* this variable will traverse all the DLL*/
+  const dlistint_t *current_node; /* this variable will traverse all the DLL*/
 
   if (h)
   {
