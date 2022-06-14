@@ -7,7 +7,6 @@
  * @h: the head of a dlistint_t list
  * Return: the number of nodes
  */
-
 size_t print_dlistint(const dlistint_t *h)
 {
   unsigned int number_of_nodes = 0; /* The returned number of nodes*/
