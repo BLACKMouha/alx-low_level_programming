@@ -10,13 +10,13 @@
  * Return: address of the new elemen, or NULL if it failed.
  */
 
-dlistint_t *add_dnodeint(dlistint_t** head, const int n)
+dlistint_t *add_dnodeint(dlistint_t **head, const int n)
 {
-	dlistint_t* new_node;
+	dlistint_t *new_node;
 
 	if (head)
 	{
-		new_node  = (dlistint_t*)malloc(sizeof(dlistint_t));
+		new_node  = (dlistint_t *)malloc(sizeof(dlistint_t));
 
 		if (new_node)
 		{
@@ -37,7 +37,7 @@ dlistint_t *add_dnodeint(dlistint_t** head, const int n)
 				return (new_node);
 			}
 		}
-		return( NULL);
+		return (NULL);
 	}
 	return (NULL);
 }
