@@ -21,10 +21,10 @@ dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 		while (current_node)
 		{
 			current_node = current_node->next;
-			nod++;
+			non++;
 		}
 
-		if (index > (nod - 1))
+		if (index > (non - 1))
 			return (NULL);
 
 		current_node = head;
