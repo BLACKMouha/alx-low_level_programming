@@ -3,7 +3,8 @@
 #include "lists.h"
 
 /**
- * sum_dlistint - computes the sum of all the data (n) of a dlistint_t linked list
+ * sum_dlistint - computes the sum of all the data (n) of a dlistint_t linked
+ * list
  * Prototype: int sum_dlistint(dlistint_t *head)
  * @head: the pointer pointing the first block of a dlistint_t list
  * Return: an integer, the sum of all data of a dlistint_t linked list
