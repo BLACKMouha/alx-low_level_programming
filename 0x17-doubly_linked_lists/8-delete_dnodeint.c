@@ -3,16 +3,14 @@
 #include "lists.h"
 
 /**
- * int delete_dnodeint_at_index - deletes the node at the index index of a
+ * delete_dnodeint_at_index - deletes the node at the index index of a
  * dlistint_t linked list.
  * Prototype: int delete_dnodeint_at_index(dlistint_t **head,
  * unsigned int index);
+ * @head: head pointer of a dlistint_t linked list
  * @index: the index of the node that should be deleted
- * Return 1 if it succeeded, -1 if it failed
+ * Return: 1 if it succeeded, -1 if it failed
  */
-
-
-
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
 	dlistint_t *node_at_index, *non_current_node, *temp_node;
@@ -45,24 +43,10 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 
 		else
 		{
-			if (node_at_index->next == NULL && node_at_index->prev == NULL)
-			{
-				free_dlistint(temp_node);
-				return (1);
-			}
-			else if (node_at_index->next == NULL && node_at_index->prev != NULL)
-			{
-				node_at_index->prev->next = NULL;
-				free(node_at_index);
-				return (1);
-			}
-			else
-			{
-				node_at_index->prev->next = node_at_index->next;
-				node_at_index->next->prev = node_at_index->prev;
-				free(node_at_index);
-				return (1);
-			}
+			node_at_index->prev->next = node_at_index->next;
+			node_at_index->next->prev = node_at_index->prev;
+			free(node_at_index);
+			return (1);
 		}
 	}
 
@@ -70,6 +54,28 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 		return (-1);
 }
 
+/**
+ * free_dlistint - frees a dlistint_t list
+ * Prototype: void free_dlistint(dlistint_t *head);
+ * @head: head of a dlistint_t list
+ * Return: Nothing
+ */
+
+void free_dlistint(dlistint_t *head)
+{
+	dlistint_t *current_node, *temp;
+
+	current_node = head;
+
+	while (current_node)
+	{
+		temp = current_node;
+		current_node = current_node->next;
+		free(temp);
+	}
+
+	free(current_node);
+}
 
 /**
  * get_dnodeint_at_index - returns the nth node of dlisint_t linked list;
@@ -105,28 +111,4 @@ dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 		return (current_node);
 	}
 	return (NULL);
-}
-
-
-/**
- * free_dlistint - frees a dlistint_t list
- * Prototype: void free_dlistint(dlistint_t *head);
- * @head: head of a dlistint_t list
- * Return: Nothing
- */
-
-void free_dlistint(dlistint_t *head)
-{
-	dlistint_t *current_node, *temp;
-
-	current_node = head;
-
-	while (current_node)
-	{
-		temp = current_node;
-		current_node = current_node->next;
-		free(temp);
-	}
-
-	free(current_node);
 }
