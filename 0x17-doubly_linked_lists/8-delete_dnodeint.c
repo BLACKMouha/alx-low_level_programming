@@ -11,104 +11,60 @@
  * @index: the index of the node that should be deleted
  * Return: 1 if it succeeded, -1 if it failed
  */
+#include "lists.h"
+
+/**
+ * dlistint_len - length of a doubly linked list
+ * @h: list's head
+ * Return: number of nodes
+ */
+size_t dlistint_len(const dlistint_t *h)
+{
+	const dlistint_t *current_node; /* traverse all the list */
+	int number_of_nodes = 0; /* number of nodes */
+
+	for (current_node = h; current_node; current_node = current_node->next)
+		number_of_nodes++;
+
+	return (number_of_nodes);
+}
+
+/**
+ * delete_dnodeint_at_index - deltes a node in a doubly linked list
+ * at a given index
+ * @head: double pointer to the list
+ * @index: index of the node to delete
+ * Return: 1 on success, -1 on failure
+ */
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
-	dlistint_t *node_at_index, *non_current_node, *temp_node;
-	unsigned int non = 0;
+	dlistint_t *temp = *head;
+	size_t non = dlistint_len(temp);
+	unsigned int i = 0;
 
-	temp_node = *head;
-	/* compute the number of node ==> non */
-	non_current_node = (dlistint_t *)malloc(sizeof(dlistint_t));
-	for (non_current_node = *head; non_current_node;
-	non_current_node = non_current_node->next)
-		non++;
-	free(non_current_node);
-
-	/* if head and index are not valid */
-	if (*head == NULL || index >= non)
+	if (*head == NULL ||  non < index + 1)
 		return (-1);
 
-	else if (*head != NULL && index < non)
+	if (!index)
 	{
-		/* we can get the node at index index */
-		node_at_index = get_dnodeint_at_index(*head, index);
-		temp_node = *head;
-		if (index == 0)
-		{
-			(*head) = temp_node->next;
-			temp_node->next->prev = NULL;
-			free(temp_node);
-			return (1);
-		}
-
-		else
-		{
-			node_at_index->prev->next = node_at_index->next;
-			node_at_index->next->prev = node_at_index->prev;
-			free(node_at_index);
-			return (1);
-		}
-	}
-
-	else
-		return (-1);
-}
-
-/**
- * free_dlistint - frees a dlistint_t list
- * Prototype: void free_dlistint(dlistint_t *head);
- * @head: head of a dlistint_t list
- * Return: Nothing
- */
-
-void free_dlistint(dlistint_t *head)
-{
-	dlistint_t *current_node, *temp;
-
-	current_node = head;
-
-	while (current_node)
-	{
-		temp = current_node;
-		current_node = current_node->next;
+		(*head) = temp->next;
+		if (temp->next)
+			temp->next->prev = NULL;
+		temp->next = NULL;
 		free(temp);
+		return (1);
 	}
 
-	free(current_node);
-}
-
-/**
- * get_dnodeint_at_index - returns the nth node of dlisint_t linked list;
- * @head: head of a dlistint_t list
- * @index: the index of the node to be found
- * Return: the nth node or NULL if it failed
- */
-
-dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
-{
-	unsigned int non = 0; /* non means number of nodes */
-	unsigned int  current_index = 0;
-	dlistint_t *current_node = (dlistint_t *)malloc(sizeof(dlistint_t));
-
-	if (head)
+	while (i < index)
 	{
-		current_node = head;
-		while (current_node)
-		{
-			current_node = current_node->next;
-			non++;
-		}
-
-		if (index > (non - 1))
-			return (NULL);
-
-		current_node = head;
-		while (current_node && current_index < index)
-		{
-			current_node = current_node->next;
-			current_index++;
-		}
-		return (current_node);
+		temp = temp->next;
+		i++;
 	}
-	return (NULL);
+
+	temp->prev->next = temp->next;
+	if (temp->next)
+		temp->next->prev = temp->prev;
+	free(temp);
+
+	return (1);
 }
