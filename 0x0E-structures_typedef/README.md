@@ -1,1 +1,0 @@
-STRUCTURES  & TYPEDEF USAGE in C language
