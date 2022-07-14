@@ -1,18 +1,11 @@
 #include "main.h"
 #include <string.h>
 
-/**
- * _strlen_recursion - returns length of string
- * @s: the string to measure
- *
- * Return: the integer length
- */
 unsigned int _strlen(char *s)
 {
 	if (*s)
 		return (1 + _strlen(s+1));
 	return (0);
-
 }
 
 /**
@@ -26,25 +19,22 @@ unsigned int _strlen(char *s)
 char *_strdup(char *str)
 {
 	char *dup;
-	unsigned int len = 0, i = 0;
+	unsigned int len, i;
 
-	if (str ==  NULL)
+	if (str == NULL)
 		return (NULL);
 
 	len = _strlen(str);
-
-	dup = (char *)malloc(sizeof(char) * (i + 1));
+	dup = (char *)malloc(sizeof(char) * (len + 1));
 
 	if (dup == NULL)
 		return (NULL);
 
-	for (i = 0; i < len; i++)
+	for (i = 0; i <= len; i++)
 		dup[i] = str[i];
+
 	return (dup);
 }
-
-
-
 
 
 
