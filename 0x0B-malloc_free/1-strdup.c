@@ -10,15 +10,17 @@
 
 unsigned int _strlen(char *s)
 {
-	if (*s)
-		return (1 + _strlen(s+1));
-	return (0);
+	int i = 0;
+
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
 
 /**
  * _strdup - duplicate a given string
  * Prototype: char *_strdup(char *str);
- * @s: string to be duplicated
+ * @str: string to be duplicated
  * Return: a pointer to the newly allocated space in memory which
  * conains a copy of the string given as parameter
  */
