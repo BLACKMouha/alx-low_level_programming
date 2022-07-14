@@ -1,6 +1,13 @@
 #include "main.h"
 #include <string.h>
 
+/**
+ * _strlen - computes the length of a string
+ * Prototype: unsigned int _strlen(char *s);
+ * @s: string
+ * Return: an integer representing the length of a given string
+ */
+
 unsigned int _strlen(char *s)
 {
 	if (*s)
