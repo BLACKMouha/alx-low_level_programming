@@ -2,6 +2,20 @@
 #include <string.h>
 
 /**
+ * _strlen_recursion - returns length of string
+ * @s: the string to measure
+ *
+ * Return: the integer length
+ */
+unsigned int _strlen(char *s)
+{
+	if (*s)
+		return (1 + _strlen(s+1));
+	return (0);
+
+}
+
+/**
  * _strdup - duplicate a given string
  * Prototype: char *_strdup(char *str);
  * @s: string to be duplicated
@@ -9,23 +23,43 @@
  * conains a copy of the string given as parameter
  */
 
-char *_strdup(char *s)
+char *_strdup(char *str)
 {
 	char *dup;
-	int i = 0;
+	unsigned int len = 0, i = 0;
 
-	if (s ==  NULL)
+	if (str ==  NULL)
 		return (NULL);
 
-	dup = (char *)malloc(sizeof(s));
+	len = _strlen(str);
+
+	dup = (char *)malloc(sizeof(char) * (i + 1));
 
 	if (dup == NULL)
 		return (NULL);
 
-	while (s[i] != '\0')
-	{
-		dup[i] = s[i];
-		i++;
-	}
+	for (i = 0; i < len; i++)
+		dup[i] = str[i];
 	return (dup);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
