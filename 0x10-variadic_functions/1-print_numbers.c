@@ -11,28 +11,22 @@
  * If @separator is NULL, print_numbers() prints nothing
  *
  */
-
 void print_numbers(const char *separator, const unsigned int n, ...)
 {
-	va_list ap;
-	unsigned int i;
+	va_list nums;
+	unsigned int index;
 
-	va_start(ap, n);
+	va_start(nums, n);
 
-	if (separator == NULL)
-		printf("%d", va_arg(ap, int));
-
-	else
+	for (index = 0; index < n; index++)
 	{
-		for (i = 0; i  < n; i++)
-		{
-			if (i != (n - 1))
-				printf("%d%s", va_arg(ap, int), separator);
-			else
-				printf("%d", va_arg(ap, int));
-		}
+		printf("%d", va_arg(nums, int));
+
+		if (index != (n - 1) && separator != NULL)
+			printf("%s", separator);
 	}
 
 	printf("\n");
-	va_end(ap);
+
+	va_end(nums);
 }
