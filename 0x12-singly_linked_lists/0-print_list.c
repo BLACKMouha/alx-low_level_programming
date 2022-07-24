@@ -5,7 +5,6 @@
  * Prototype: size_t print_list(const list_t *h)
  * @h: head of a list_t list
  * Return: the number of nodes
-
  * If str == NULL, "[0] (nil)" is printed
  */
 size_t print_list(const list_t *h)
