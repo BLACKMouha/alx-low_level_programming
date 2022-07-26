@@ -1,36 +1,7 @@
 #include "lists.h"
 
-/**
- * unshift_listint - deletes the last node of a listint_t list
- * Prototype: int unshift_listint(listint_t **head);
- * @head: points to the first node of a listint_t list
- * Return: the head node's data (n); if the linked list is empty it
- * returns 0
- */
-int unshift_listint(listint_t **head)
-{
-	listint_t *last, *previous;
-	int removed;
-	size_t non = listint_len(*head);
+int unshift_listint(listint_t **head);
 
-	if (!head)
-		return (0);
-
-	non = listint_len(*head);
-	last = get_nodeint_at_index(*head, (non - 1));
-
-	if (*head)
-	{
-		previous = get_nodeint_at_index(*head, (non - 2));
-		removed = last->n;
-		last = NULL;
-		free(last);
-		previous->next = NULL;
-		return (removed);
-	}
-	else
-		return (0);
-}
 
 /**
  * delete_nodeint_at_index - deletes the node at a given index
@@ -80,35 +51,34 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 }
 
 
+/**
+ * unshift_listint - deletes the last node of a listint_t list
+ * Prototype: int unshift_listint(listint_t **head);
+ * @head: points to the first node of a listint_t list
+ * Return: the head node's data (n); if the linked list is empty it
+ * returns 0
+ */
+int unshift_listint(listint_t **head)
+{
+	listint_t *last, *previous;
+	int removed;
+	size_t non = listint_len(*head);
 
+	if (!head)
+		return (0);
 
+	non = listint_len(*head);
+	last = get_nodeint_at_index(*head, (non - 1));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	if (*head)
+	{
+		previous = get_nodeint_at_index(*head, (non - 2));
+		removed = last->n;
+		last = NULL;
+		free(last);
+		previous->next = NULL;
+		return (removed);
+	}
+	else
+		return (0);
+}
