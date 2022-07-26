@@ -1,6 +1,5 @@
 #include "lists.h"
 
-/** ===================================== */
 /**
  * insert_nodeint_at_index - inserts a new node at a given index
  * Prototype:
@@ -15,26 +14,38 @@
  */
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
-	listint_t *node_at_index = get_nodeint_at_index(*head, (idx - 1));
+	listint_t *node_at_index;
 	listint_t *new_node;
-	size_t non = listint_len(*head);
+	size_t non;
 
 	if (idx > non)
 		return (NULL);
 
-	new_node = malloc(sizeof(new_node));
-	if (new_node == NULL)
+	if (!head)
 		return (NULL);
-	new_node->n = n;
+
+	node_at_index = get_nodeint_at_index(*head, (idx - 1));
+	non = listint_len(*head);
+
 
 	if (idx == 0)
 		add_nodeint(head, n);
-	else if (idx == (non - 1))
+	else if (idx == non)
 		add_nodeint_end(head, n);
-	else
+
+	new_node = malloc(sizeof(new_node));
+	if (new_node == NULL)
+		return (NULL);
+
+	if (!head)
 	{
-		new_node->next = node_at_index->next;
-		node_at_index->next = new_node;
+		free(new_node);
+		return (NULL);
+	}
+
+	new_node->n = n;
+	new_node->next = node_at_index->next;
+	node_at_index->next = new_node;
 	}
 	return (new_node);
 }
