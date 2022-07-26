@@ -68,7 +68,6 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 
 int delete_nodeint_at_index(listint_t **head, unsigned int index)
 {
-/* can it be done with less helpers? try refactoring later */
 	size_t length;
 	listint_t *temp;
 
