@@ -64,41 +64,43 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
  * at 0.
  * Return: 1 in Success, -1 on Failure
  */
+
 int delete_nodeint_at_index(listint_t **head, unsigned int index)
 {
-	size_t non;
-	listint_t *node_at_index, *previous_node;
+/* can it be done with less helpers? try refactoring later */
+	size_t length;
+	listint_t *temp;
 
-	if (!head)
+	if (!head || !(*head))
 		return (-1);
 
-	non = listint_len(*head);
+	length = listint_len(*head);
 
-	if (index > non)
+	if (index > length)
 		return (-1);
 
+	if (index == length)
+	{
+		if (index == 0)
+		{
+			free(*head);
+			return (1);
+		}
+		temp = get_nodeint_at_index(*head, (length - 1));
+		free(temp->next);
+		temp->next = NULL;
+		return (1);
+	}
 	if (index == 0)
 	{
-		pop_listint(head);
+		temp = (*head)->next;
+		free(*head);
+		*head = temp;
 		return (1);
 	}
-
-	if (index == (non - 1))
-	{
-		node_at_index = get_nodeint_at_index(*head, (non - 1));
-		previous_node = get_nodeint_at_index(*head, (non - 2));
-		previous_node->next = NULL;
-		free(node_at_index);
-		return (1);
-	}
-
-	if (index != 0 || index != (non - 1) || index <= non - 1)
-	{
-		node_at_index = get_nodeint_at_index(*head, index);
-		previous_node = get_nodeint_at_index(*head, (index - 1));
-		previous_node->next = node_at_index->next;
-		free(node_at_index);
-		return (1);
-	}
-	return (-1);
+	temp = get_nodeint_at_index(*head, (index + 1));
+	free(get_nodeint_at_index(*head, index));
+	(get_nodeint_at_index(*head, index - 1))->next = temp;
+	return (1);
 }
+
