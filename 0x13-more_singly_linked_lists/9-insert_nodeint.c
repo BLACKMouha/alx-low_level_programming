@@ -1,5 +1,6 @@
 #include "lists.h"
 
+/** ==============START===LISTINT_LEN===START===================== */
 /**
  * listint_len - computes the number of node of a listint_t list
  * Prototype: size_t listint_len(const listint_t *h);
@@ -23,7 +24,9 @@ size_t listint_len(const listint_t *h)
 	else
 		return (0);
 }
+/** ==============END===LISTINT_LEN===END======================= */
 
+/** ==============START===ADD_NODEINT===START=================== */
 /**
  * add_nodeint - adds a new node at the beginning of a listint_t list
  * Prototype: listint_t *add_nodeint(listint_t **head, const int n);
@@ -53,7 +56,9 @@ listint_t *add_nodeint(listint_t **head, const int n)
 
 	return (new);
 }
+/** ===============END===ADD_NODEINT===END===================== */
 
+/** ==============START===ADD_NODEINT===START================== */
 /**
  * add_nodeint_end - adds a new node at the end of a listint_t list
  * Prototype: listint_t *add_nodeint_end(listint_t **head,
@@ -90,7 +95,9 @@ listint_t *add_nodeint_end(listint_t **head, const int n)
 
 	return (new_node);
 }
+/** ==============END===ADD_NODEINT_END===END=================== */
 
+/** ==========START===GET_NODEINT_AT_INDEX===START============== */
 /**
  * get_nodeint_at_index - finds the nth node of a listint_t list
  * Prototype:
@@ -120,7 +127,10 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 
 	return (node_at_index);
 }
+/** ==========END===GET_NODEINT_AT_INDEX===END============== */
 
+
+/** ===================================== */
 /**
  * insert_nodeint_at_index - inserts a new node at a given index
  * Prototype:
