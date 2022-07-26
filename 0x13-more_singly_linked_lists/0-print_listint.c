@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
 #include "lists.h"
 
 /**
@@ -12,20 +8,33 @@
  */
 size_t print_listint(const listint_t *h)
 {
-	size_t non; /** non means Number Of Nodes */
+	size_t count = 1;
 
-	non = 0;
 	if (h)
 	{
-		while (h != NULL)
-		{
-			printf("%d\n", h->n);
-			h = h->next;
-			non++;
-		}
-		return (non);
+		printf("%i\n", h->n);
+
+		if (h->next)
+			count += print_listint(h->next);
+
+		return (count);
 	}
 	else
 		return (0);
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
