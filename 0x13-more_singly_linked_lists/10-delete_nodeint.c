@@ -1,15 +1,14 @@
 #include "lists.h"
 
 /**
- * listint_len - counts all the elements of a struct list type 
- * listint_t
+ * listint_len - counts all the elements of a struct list type listint_t
  *
- * @h: pointer to the head/first member of a singly linked list of 
- * structs
+ * @h: pointer to the head/first member of a singly linked list of structs
  * of type listint_s
  *
- * Return: number of nodes in the list
+ * Return: amount of nodes in the list
  */
+
 size_t listint_len(const listint_t *h)
 {
 	size_t count = 1;
@@ -36,6 +35,7 @@ size_t listint_len(const listint_t *h)
  *
  * Return: address of 'index'th node of listint_t linked list
  */
+
 listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 {
 	listint_t *temp = head;
@@ -55,14 +55,15 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 }
 
 /**
- * delete_nodeint_at_index - deletes the node at a given index
- * Prototype:
- * int delete_nodeint_at_index(listint_t **head unsigned int index);
+ * delete_nodeint_at_index - deletes a node from a listint_t linked list
+ * at index position index
  *
- * @head: points to the first node
- * @index: the index of the node that should be deleted. Index starts
- * at 0.
- * Return: 1 in Success, -1 on Failure
+ * @head: double pointer to the first member of a singly linked list
+ * of structs of type listint_s
+ *
+ * @index: index value of position in list, starting at 0
+ *
+ * Return: 1 if successful, or -1 if failed
  */
 
 int delete_nodeint_at_index(listint_t **head, unsigned int index)
@@ -103,4 +104,3 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 	(get_nodeint_at_index(*head, index - 1))->next = temp;
 	return (1);
 }
-
