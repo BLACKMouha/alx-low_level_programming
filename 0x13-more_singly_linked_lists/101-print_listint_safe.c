@@ -1,8 +1,9 @@
 #include "lists.h"
 
 /**
- * print_listint_safe - prints a listint_t list
- * It print should go through the list only once
+ * print_listint_safe - prints a listint_t list. It print should go
+ * through the list only once
+ *
  * Prototype: size_t print_listint_safe(const listint_t *head);
  * @head: points to the first node
  *
