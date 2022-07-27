@@ -41,6 +41,8 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index);
 
 int unshift_listint(listint_t **head);
 
+listint_t *reverse_listint(listint_t **head);
+
 #endif /** LISTS_H */
 
 
