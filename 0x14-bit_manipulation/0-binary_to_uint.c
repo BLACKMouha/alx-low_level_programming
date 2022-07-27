@@ -41,9 +41,9 @@ unsigned int binary_to_uint(const char *b)
 		if (b[i] == '0' || b[i] == '1')
 		{
 			if (b[i] == '0')
-				result += 0 * _pow_recursion(2, len_b);
+				result += 0;
 			if (b[i] == '1')
-				result += 1 * _pow_recursion(2, len_b);
+				result += _pow_recursion(2, (int)len_b);
 		}
 		else
 			return (0);
