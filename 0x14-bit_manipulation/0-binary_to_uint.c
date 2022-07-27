@@ -1,66 +1,52 @@
 #include "main.h"
-
+#include <stddef.h>
 /**
- * _strlen - return the length of a string.
- * @str: a const pointer to the string.
+ * _pow_recursion - returns the x to the power y
+ * @x: the base
+ * @y: the exponent
  *
- * Return: The string length.
+ * Return: the integer result, -1 on error
  */
-unsigned int _strlen(char const *str)
+int _pow_recursion(int x, int y)
 {
-	unsigned int i;
-
-	for (i = 0; str[i] != '\0'; i++)
-		;
-	return (i);
+	if (y < 0)
+		return (-1);
+	if (y > 0)
+		return (x * _pow_recursion(x, y - 1));
+	return (1);
 }
 
 /**
- * _pow - return the power of a number.
- * @a: the number to be raised.
- * @b: the exponent
- *
- * Return: The power of a number.
- */
-unsigned int _pow(unsigned int a, unsigned int b)
-{
-	unsigned int i, pow = 1;
-
-	if (b == 0)
-		return (1);
-
-	for (i = 0; i < b; i++)
-		pow *= a;
-
-	return (pow);
-}
-
-/**
- * binary_to_uint - Converts a binary number to an unsigned int.
- * @b: A pointer to a string of 0 and 1 chars.
- *
- * Return: the converted number, or 0 if there is 1 or more charse
- *         in the string b that is not 0 or 1.
+ * binary_to_uint - converts a binary number to an unsigned int
+ * Prototype: unsigned int binary_to_uint(const char *b);
+ * @b: point to a string of 0 and 1 chars
+ * Return: the converted number, or 0 if :
+ * - there is one or more chars in the string @b that is not 0 or 1
+ * - @b == NULL
  */
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int i, j, len, sum, basePwr;
+	size_t len_b, i;
+	unsigned int result = 0;
 
 	if (!b)
 		return (0);
 
-	for (i = 0; b[i] != '\0'; i++)
+	len_b = strlen(b);
+	i = 0;
+	while (b[i] != '\0')
 	{
-		if (b[i] != '0' && b[i] != '1')
+		if (b[i] == '0' || b[i] == '1')
+		{
+			if (b[i] == '0')
+				result += 0;
+			if (b[i] == '1')
+				result += _pow_recursion(2, (int)len_b);
+		}
+		else
 			return (0);
+		len_b--;
+		i++;
 	}
-
-	len = _strlen(b);
-	sum = 0;
-	for (i = 0, j = len; i < len; i++, j--)
-	{
-		basePwr = _pow(2, j - 1);
-		sum += (((b[i]) - '0') * basePwr);
-	}
-	return (sum);
+	return (result / 2);
 }
