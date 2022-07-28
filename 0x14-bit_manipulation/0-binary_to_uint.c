@@ -44,23 +44,24 @@ unsigned int _pow(unsigned int a, unsigned int b)
  */
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int i, j, len, sum, basePwr;
+	size_t i, len_b;
+	unsigned int uint = 0;
 
 	if (!b)
 		return (0);
 
-	for (i = 0; b[i] != '\0'; i++)
+	len_b = strlen(b);
+	i = 0;
+	while (b[i] != '\0')
 	{
-		if (b[i] != '0' && b[i] != '1')
+		if (b[i] != '1' && b[i] != '0')
 			return (0);
+		if (b[i] == '1')
+			uint += 1 << len_b;
+		len_b--;
+		i++;
 	}
+	uint >>= 1;
 
-	len = _strlen(b);
-	sum = 0;
-	for (i = 0, j = len; i < len; i++, j--)
-	{
-		basePwr = _pow(2, j - 1);
-		sum += (((b[i]) - '0') * basePwr);
-	}
-	return (sum);
+	return (uint);
 }
