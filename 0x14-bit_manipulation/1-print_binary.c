@@ -11,7 +11,7 @@ void print_binary(unsigned long int n)
 	unsigned long int i = 1;
 
 	if (n == 0)
-		putchar('0');
+		_putchar('0');
 
 	while (i <= n)
 		i <<= 1;
@@ -19,9 +19,9 @@ void print_binary(unsigned long int n)
 	for (i >>= 1; i > 0; i >>= 1)
 	{
 		if (n & i)
-			putchar('1');
+			_putchar('1');
 		else
-			putchar('0');
+			_putchar('0');
 	}
 }
 
