@@ -7,7 +7,6 @@
  * @ac: number of arguments passed to the program, it should be 3
  * exacty;
  * @av: array containing all arguments in a string form
- *
  * Return: EXIT_SUCCESS
  */
 int main(int ac, char **av)
@@ -62,7 +61,7 @@ int main(int ac, char **av)
  */
 void safe_close(int fd)
 {
-	if (close(f_n) == -1)
+	if (close(fd) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", f_n);
 		exit(100);
