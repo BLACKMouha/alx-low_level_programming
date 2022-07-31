@@ -11,7 +11,7 @@
  */
 int main(int ac, char **av)
 {
-	int fd_file_from, fd_file_to, close_fd;
+	int fd_file_from, fd_file_to;
 	char buffer[1024];
 	ssize_t read_chars, written;
 
@@ -39,7 +39,7 @@ int main(int ac, char **av)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n",
 		av[1]);
-		exit((98);
+		exit(98);
 	}
 	written = write(fd_file_to, buffer, read_chars);
 	if (written == -1)
