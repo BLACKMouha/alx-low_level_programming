@@ -34,19 +34,19 @@ int main(int ac, char **av)
 		exit(99);
 	}
 
-	read_chars = read(fd_file_from, buffer, 1024);
-	if (read_chars == -1)
+	while ((read_chars = read(fd_file_from, buffer, 1024)) != 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n",
-		av[1]);
-		exit(98);
-	}
-	written = write(fd_file_to, buffer, read_chars);
-	if (written == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write from file %s\n",
-		av[2]);
-		exit(99);
+		if (read_chars == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
+			exit(98);
+		}
+		written = write(fd_file_to, buffer, read_chars);
+		if (written == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
+			exit(99);
+		}
 	}
 	safe_close(fd_file_from);
 	safe_close(fd_file_to);
