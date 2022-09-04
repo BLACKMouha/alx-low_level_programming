@@ -10,6 +10,7 @@
 int sum_dlistint(dlistint_t *head)
 {
 	int sum;
+
 	if (!head)
 		return (0);
 
@@ -19,5 +20,6 @@ int sum_dlistint(dlistint_t *head)
 		sum += head->n;
 		head = head->next;
 	}
+
 	return (sum);
 }
