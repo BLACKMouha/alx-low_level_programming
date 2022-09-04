@@ -84,10 +84,10 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	if (idx == 0)
 		return (add_dnodeint(h, n));
 
-	curr_at_idx = get_dnodeint_at_index(*h, idx);
 	new = malloc(sizeof(dlistint_t));
 	if (new == NULL)
 		return (NULL);
+	curr_at_idx = get_dnodeint_at_index(*h, idx);
 	new->n = n;
 	new->next = curr_at_idx;
 	new->prev = curr_at_idx->prev;
