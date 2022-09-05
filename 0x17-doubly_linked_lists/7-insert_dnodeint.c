@@ -71,37 +71,73 @@ dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
  */
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
-	dlistint_t *new, *curr_at_idx;
+	dlistint_t *new, *before;
 	size_t non; /** number of nodes */
 
 	if (!h)
 		return (NULL);
 
 	non = dlistint_len(*h);
-	if (idx >= non)
+	if (idx > non)
 		return (NULL);
 
-	if (idx == 0)
-		return (add_dnodeint(h, n));
 
 	new = malloc(sizeof(dlistint_t));
 	if (new == NULL)
 		return (NULL);
-	curr_at_idx = get_dnodeint_at_index(*h, idx);
-	new->n = n;
-	new->next = curr_at_idx;
-	new->prev = curr_at_idx->prev;
-	curr_at_idx->prev->next = new;
-	curr_at_idx->prev = new;
 
-	return (new);
+	new->n = n;
+	new->prev = NULL;
+	new->next = NULL;
+
+	if (idx == 0)
+	{
+		new->next = *h;
+		if (*h != NULL)
+			(*h)->prev = new;
+		*h = new;
+		return (new);
+	}
+	else
+	{
+		before = get_dnodeint_at_index(*h, idx - 1);
+
+		new->next = before->next;
+		new->prev = before;
+		before->next = new;
+		if (new->next != NULL)
+			new->next->prev = new;
+		return (new);
+	}
 }
 
+/*
+
+idx = 3
+idx - 1 = 2
+two->next = three
+two->next->prev = three
 
 
 
+new->next = two->next
+new->prev = two
+
+if new->next != NULL | two->next != NULL
+	new->next->prev = new
+	two->next->prev = new;
+	three->prev = new;
 
 
+idx = 3
+three->prev = two
+three->prev->next = three
+
+new->next = three
+new->prev = three->prev
+
+if new->next->next != NULL | three->
+*/
 
 
 
