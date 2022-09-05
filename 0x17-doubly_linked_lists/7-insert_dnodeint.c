@@ -74,9 +74,6 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	dlistint_t *new, *before;
 	size_t non; /** number of nodes */
 
-	if (!h)
-		return (NULL);
-
 	non = dlistint_len(*h);
 	if (idx > non)
 		return (NULL);
@@ -93,6 +90,7 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	if (idx == 0)
 	{
 		new->next = *h;
+		new->prev = NULL;
 		if (*h != NULL)
 			(*h)->prev = new;
 		*h = new;
@@ -110,35 +108,6 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 		return (new);
 	}
 }
-
-/*
-
-idx = 3
-idx - 1 = 2
-two->next = three
-two->next->prev = three
-
-
-
-new->next = two->next
-new->prev = two
-
-if new->next != NULL | two->next != NULL
-	new->next->prev = new
-	two->next->prev = new;
-	three->prev = new;
-
-
-idx = 3
-three->prev = two
-three->prev->next = three
-
-new->next = three
-new->prev = three->prev
-
-if new->next->next != NULL | three->
-*/
-
 
 
 
