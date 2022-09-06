@@ -1,2 +1,3 @@
 #!/bin/bash
-LD_PRELOAD= ./101-make_me_win.sh
+LD_PRELOAD=$PWD/101-make_me_win.sh
+export LD_PRELOAD
