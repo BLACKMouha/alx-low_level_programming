@@ -9,16 +9,19 @@
 
 size_t print_list(const list_t *h)
 {
-	size_t nodes;
+	size_t nodes = 0;
 
-	while (tmp)
+	while (h)
 	{
-		if (tmp->str == NULL)
+		if (h->str == NULL)
 			printf("[0] (nil)\n");
+
 		else
-			printf("[%d] %s\n", tmp->len, tmp->str);
+			printf("[%d] %s\n", h->len, h->str);
+
 		nodes++;
-		tmp = tmp->next;
+		h = h->next;
 	}
+
 	return (nodes);
 }
