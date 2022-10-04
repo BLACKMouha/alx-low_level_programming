@@ -18,9 +18,9 @@ void hash_table_print(const hash_table_t *ht)
 	printf("{");
 	for (idx = 0; idx < ht->size; idx++)
 	{
+		tmp = ht->array[idx];
 		if (ht->array[idx])
 		{
-			tmp = ht->array[idx];
 			while (tmp)
 			{
 				if (comma == 1)
