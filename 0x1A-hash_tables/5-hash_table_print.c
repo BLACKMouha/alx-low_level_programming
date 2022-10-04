@@ -9,8 +9,7 @@
 void hash_table_print(const hash_table_t *ht)
 {
 	hash_node_t *tmp;
-	unsigned int idx;
-	char comma = 0;
+	unsigned int idx, comma = 0;
 
 	if (!ht)
 		return;
