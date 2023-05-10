@@ -23,6 +23,8 @@ int jump_search(int *array, size_t size, int value)
 {
 	size_t i, j, step, left, right;
 
+	if (array == NULL || size == 0)
+		return (-1);
 	step = (size_t)floor(sqrt(size));
 	while (1)
 	{
