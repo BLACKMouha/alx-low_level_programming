@@ -1,0 +1,20 @@
+# Ignore object files and executables
+*.o
+*.out
+
+# Ignore compiled libraries
+*.a
+*.so
+
+# Ignore editor backup files
+*~
+
+# Ignore compiled C files
+*.exe
+
+# Ignore generated documentation
+/doc/
+
+# Ignore build output directories
+/build/
+/bin/
