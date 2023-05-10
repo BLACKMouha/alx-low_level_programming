@@ -1,3 +1,5 @@
+# Ignore main files
+*main*.c
 # Ignore object files and executables
 *.o
 *.out
