@@ -3,10 +3,10 @@
 
 /**
  * min - computes the minimum between two integers
- * Prototype: int min (int a, int b);
+ * Prototype: size_t min(size_t a, size_t b);
  * @a: integer
  * @b: integer
- * Return: the lowest integer between arguments provided
+ * Return: the lowest integer between provided arguments
  */
 size_t min(size_t a, size_t b) { return (a < b) ? a : b; }
 
@@ -26,7 +26,7 @@ int jump_search(int *array, size_t size, int value)
 	step = (size_t)floor(sqrt(size));
 	while (1)
 	{
-		for (i = 0; array[i] < value && i < size; )
+		for (i = 0; array[i] <= value && i < size; )
 		{
 			printf("Value checked array[%ld] = [%d]\n", i, array[i]);
 			left = i;
