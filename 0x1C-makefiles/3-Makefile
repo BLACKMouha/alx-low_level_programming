@@ -13,10 +13,10 @@ school: $(OBJ)
 	$(CC) -c -o $@ $<
 
 clean:
-	$(RM) *~ *.swp *.swo
+	$(RM) $(SRC)*~ $(SRC)*.swp $(SRC)*.swo
 
 oclean:
-	$(RM) -name *.o
+	$(RM) -name $(OBJ)
 
 fclean: clean oclean
 	$(RM) $(NAME)
