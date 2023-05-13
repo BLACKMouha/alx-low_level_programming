@@ -1,0 +1,28 @@
+CC = gcc
+SRC = main.c school.c
+OBJ = $(SRC:.c=.o)
+NAME = school
+RM = find . -type f 
+
+all: $(NAME)
+
+school: $(OBJ)
+	$(CC) $(OBJ) -o $@
+
+%.o: %.c m.h
+	$(CC) -c -o $@ $<
+
+clean:
+	$(RM) \( -name "*~" -o -name "#*#" \) -delete
+	$(RM) -name "*.swp" -delete
+	$(RM) -name "*.swo" -delete
+
+oclean:
+	$(RM) -name "*.o" -delete
+
+fclean:
+	clean
+	oclean
+	$(RM) -name "$(NAME)"
+
+re: oclean $(NAME)
