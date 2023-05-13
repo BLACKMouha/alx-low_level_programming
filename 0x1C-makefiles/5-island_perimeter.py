@@ -6,6 +6,7 @@ Computes the perimeter of the island described in grid
 
 
 def island_perimeter(grid):
+    '''Computes the perimeter of the island described in grid'''
     n, sides = 0, 4
     for i in range(len(grid)):
         for j in range(len(grid[i])):
