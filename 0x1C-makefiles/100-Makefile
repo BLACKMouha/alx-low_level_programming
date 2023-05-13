@@ -6,10 +6,6 @@ CFLAGS = -Wall -Werror -Wextra -pedantic
 
 .PHONY: all clean oclean fclean re school
 
-ifneq ($(wildcard m.h, m.h))
-	$(error)
-endif
-
 all: $(NAME)
 
 school: $(OBJ)
