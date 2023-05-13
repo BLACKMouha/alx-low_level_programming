@@ -13,16 +13,14 @@ school: $(OBJ)
 	$(CC) -c -o $@ $<
 
 clean:
-	$(RM) \( -name "*~" -o -name "#*#" \) -delete
-	$(RM) -name "*.swp" -delete
-	$(RM) -name "*.swo" -delete
+	$(RM) *~ *.swp *.swo
 
 oclean:
-	$(RM) -name "*.o" -delete
+	$(RM) -name *.o
 
 fclean:
 	clean
 	oclean
-	$(RM) -name "$(NAME)"
+	$(RM) $(NAME)
 
 re: oclean $(NAME)
