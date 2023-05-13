@@ -13,12 +13,12 @@ school: $(OBJ)
 	$(CC) -c -o $@ $<
 
 clean:
-	$(RM) *~ *.swp *.swo
+	$(RM) -f *.c~ *.swp *.swo
 
 oclean:
-	$(RM) -name $(OBJ)
+	$(RM) -f $(OBJ)
 
 fclean: clean oclean
-	$(RM) $(NAME)
+	$(RM) -f $(NAME)
 
-re: oclean $(NAME)
+re: oclean all
