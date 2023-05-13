@@ -1,9 +1,9 @@
+#ifndef LISTS_H
+#define LISTS_H
+/* C header files */
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-
-#ifndef LISTS_H
-#define LISTS_H
 
 /**
  * struct listint_s  - singly linked list
